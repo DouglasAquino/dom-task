@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação do DOM</title>
+    <script>
+        var tarefas = [
+            {
+                id: 1,
+                titulo: "Tomar água",
+                dataDeTermino: new Date(2021, 7, 14),
+                estahConcluida: true,
+            },
+
+            {
+                id: 2,
+                titulo: "Escrever a introdução do TCC",
+                dataDeTermino: new Date(2021, 7, 29),
+                estahConcluida: false,
+            },
+
+            {
+                id: 3,
+                titulo: "Chorar no banho",
+                dataDeTermino: new Date(2021, 7, 30),
+                estahConcluida: false,
+            },
+           
+        ];
+
+        function apresentarTarefas() {
+            var ul = document.getElementById('ulTarefas');
+            for (var tarefa of tarefas){
+                var li = document.createElement('li');
+                if (tarefa.estahConcluida) {
+                    var strike = document.createElement('strike');
+                    strike.innerHTML = tarefa.titulo;
+                    li.appendChild(strike);
+                } else{
+                    li.innerHTML = tarefa.titulo;
+                }
+                ul.appendChild(li);
+            }
+        }
+        function documentLoad() {
+            apresentarTarefas();
+        }
+
+        document.addEventListener('DOMContentLoaded', documentLoad)
+
+    </script>
+</head>
+<body>
+    <div id="app">
+        <h1 id="title">Gerenciador de Tarefas</h1>
+        <h4 id="subtitle">Demonstração de recursos de manipulação do DOM com JavaScript</h4>
+        <hr>
+        <ul id="ulTarefas"></ul>
+    </div>
+    
+</body>
+</html>
