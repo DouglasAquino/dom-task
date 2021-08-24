@@ -30,11 +30,22 @@
            
         ];
 
+        function diferencaEntreDatas(d1, d2){
+            var f = 1000 * 60 * 60 * 24;
+            var dif = d1 - d2;
+            dif = Math.round(dif/f);
+            return dif;
+        }
+
         function apresentarTarefas() {
             var ul = document.getElementById('ulTarefas');
+            
+            var atual = new Date();
             for (var tarefa of tarefas){
                 var li = document.createElement('li');
-                li.innerHTML = tarefa.titulo;
+                var diferenca = diferencaEntreDatas(tarefa.dataDeTermino, new Date())
+                li.innerHTML = `<strong>${tarefa.titulo}</strong>` + ' - '
+                + `<em>Termina em ${diferenca}</em>`;
                 ul.appendChild(li);
             }
         }
